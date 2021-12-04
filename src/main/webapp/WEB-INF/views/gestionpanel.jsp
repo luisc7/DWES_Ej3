@@ -17,23 +17,25 @@
 	
 	<h1>Gestión de Proyectos</h1>
 	<p>Hola ${empleadoActivo.nombre}</p>
-	<a href="/altaProyecto">
+	<a href="gestion/altaProyecto">
 		<input type="button" value="Dar proyecto de alta">
 	</a>
 	<table>
 		 
 		 <tr>
 			<th class="col1">Nombre del proyecto</th>
-			<th class="col2">Estado</th>
-			<th class="col3">Jefe de proyecto</th>
+			<th class="col2">Cliente</th>
+			<th class="col3">Estado</th>
+			<th class="col4">Jefe de proyecto</th>
 						
 			<th class="col5">Opciones</th>
 		</tr>
 		<c:forEach var="eleProyecto" items="${listaProyectos}">
 			<tr>
 				<td class="col1 filled-col">${eleProyecto.descripcion}</td>
+				<td class="col3 filled-col">${eleProyecto.cliente.nombre}</td>
 				<td class="col3 filled-col">${eleProyecto.estado}</td>
-				<td class="col3 filled-col">${eleProyecto.jefeProyecto}</td>
+				<td class="col4 filled-col">${eleProyecto.jefeProyecto}</td>
 				<td class="col5 filled-col"><a href="terminarProyecto/${eleProyecto.idProyecto}">Terminar proyecto</a></td>
 			</tr>
 		</c:forEach>

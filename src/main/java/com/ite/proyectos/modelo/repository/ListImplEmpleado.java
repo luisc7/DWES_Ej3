@@ -18,8 +18,7 @@ import com.ite.proyectos.modelo.beans.Perfile;
 public class ListImplEmpleado implements IntEmpleadoDao {
 	
 	private List<Empleado> listaEmpleados;
-	
-	
+		
 	private ListImplPerfile perfilEmpleados;
 	
 	private ListImplDepartamento departamentos;
@@ -76,5 +75,15 @@ public class ListImplEmpleado implements IntEmpleadoDao {
 	@Override
 	public ListImplPerfile SacarListaPerfiles() {
 		return perfilEmpleados;
+	}
+
+	@Override
+	public List<Empleado> listarJefes() {
+		List<Empleado> listaJefes = new ArrayList<Empleado>();
+		for (Empleado empleado : listaEmpleados) {
+			if (empleado.getPerfile().getIdPerfil()==2)
+				listaJefes.add(empleado);
+		}
+		return listaJefes;
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ite.proyectos.modelo.beans.Empleado;
+import com.ite.proyectos.modelo.repository.IntClienteDao;
 import com.ite.proyectos.modelo.repository.IntDepartamentoDao;
 import com.ite.proyectos.modelo.repository.IntEmpleadoDao;
 import com.ite.proyectos.modelo.repository.IntPerfileDao;
@@ -28,6 +29,9 @@ public class HomeController {
 	
 	@Autowired
 	private IntEmpleadoDao iempleados;
+	
+	@Autowired
+	private IntClienteDao iclientes;
 	
 	@GetMapping("/")
 	public String inicio(HttpSession sesionEmpleado) {
@@ -89,7 +93,7 @@ public class HomeController {
 		 */
 		
 		sesionEmpleado.removeAttribute("empleadoActivo");
-		return "/login";
+		return "redirect:/login";
 	}
 
 }

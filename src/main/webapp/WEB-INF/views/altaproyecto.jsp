@@ -14,25 +14,37 @@
 	<h1>Alta de nuevo proyecto</h1>
 	<p>Hola ${empleadoActivo.nombre}</p>
 	
-	<table>
-		 
-		 <tr>
-			<th class="col1">Nombre del proyecto</th>
-			<th class="col2">Estado</th>
-			<th class="col3">Jefe de proyecto</th>
-						
-			<th class="col5">Opciones</th>
-		</tr>
-		<c:forEach var="eleProyecto" items="${listaProyectos}">
-			<tr>
-				<td class="col1 filled-col">${eleProyecto.descripcion}</td>
-				<td class="col3 filled-col">${eleProyecto.estado}</td>
-				<td class="col3 filled-col">${eleProyecto.jefeProyecto}</td>
-				<td class="col5 filled-col"><a href="terminarProyecto/${eleProyecto.idProyecto}">Terminar proyecto</a></td>
-			</tr>
+	<form action="altaProyecto" method="post" name="formAltaProyecto">
+	<fieldset>
+		<legend>Cumplimenta los datos el nuevo proyecto:</legend>
+		<label for="descripcion">Descripción del proyecto: </label>
+		<input type="text" name="descripcion"><br>
+		<label for="costePrevisto">Coste previsto: </label>
+		<input type="number" name="costePrevisto"><br>
+		<label for="fechaInicio">Fecha de inicio: </label>
+		<input type="date" name="fechaInicio"><br>
+		<label for="fechaFinPrevisto">Fecha prevista de finalización: </label>
+		<input type="date" name="fechaFinPrevisto"><br>
+		<label for="ventaPrevisto">Ventas previstas para el proyecto: </label>
+		<input type="number" name="ventaPrevisto"><br>
+		<label for="cliente">Cliente: </label>
+		<select name="cliente">
+		<c:forEach var="eleCliente" items="${listaClientes}">
+			<option value="${eleCliente.cif}">${eleCliente.nombre}</option>
 		</c:forEach>
-		
-	</table>
+		</select><br>
+		<label for="jefeProyecto">Jefe de proyecto: </label>
+		<select name="jefeProyecto">
+		<c:forEach var="eleJefe" items="${listaJefes}">
+			<option value="${eleJefe.idEmpl}">${eleJefe.nombre}</option>
+		</c:forEach>
+		</select>
+	</fieldset>
+	
+	<input class="send-button" type="submit" value="Dar de alta el proyecto" />
+	
+	</form>
+	
 
 </body>
 </html>

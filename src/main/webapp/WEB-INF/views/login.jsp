@@ -14,9 +14,9 @@
 		<div class="grid">
 		
 		<label for="idEmpleado">Número de empleado </label>
-		<input type="number" name="idEmpleado" id="idEmpleado"/>
+		<input type="number" name="idEmpleado" id="idEmpleado"/><br>
 		<label for="email">Correo electrónico </label>
-		<input type="text" name="email" id="email"/>
+		<input type="text" name="email" id="email"/><br>
 		<label for="password">Contraseña </label>
 		<input type="password" name="password" id="password"/>
 		

@@ -52,4 +52,9 @@ public class ListImplProyecto implements IntProyectoDao {
 		} else
 			return null;
 	}
+	
+	@Override
+	public List<Proyecto> listarProyectos() {
+		return listaProyectos;
+	}
 }

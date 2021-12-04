@@ -2,6 +2,7 @@ package com.ite.proyectos.modelo.repository;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import com.ite.proyectos.modelo.beans.Departamento;
 import com.ite.proyectos.modelo.beans.Empleado;
@@ -12,6 +13,7 @@ public interface IntEmpleadoDao {
 			Departamento departamento, Perfile perfile, String password);
 	Empleado findById(int idEmpleado);
 	ListImplPerfile SacarListaPerfiles();
+	List<Empleado> listarJefes();
 	
 	
 }
