@@ -1,6 +1,7 @@
 package com.ite.proyectos.modelo.beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 public class Perfile implements Serializable {
@@ -11,6 +12,13 @@ public class Perfile implements Serializable {
 	private String nombre;
 
 	public Perfile() {
+		super();
+	}	
+
+	public Perfile(int idPerfil, String nombre) {
+		super();
+		this.idPerfil = idPerfil;
+		this.nombre = nombre;
 	}
 
 	public int getIdPerfil() {
@@ -27,6 +35,23 @@ public class Perfile implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idPerfil);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Perfile other = (Perfile) obj;
+		return idPerfil == other.idPerfil;
 	}
 
 }

@@ -13,8 +13,7 @@ public class Producto implements Serializable {
 	private String descripcionBreve;	
 	private String descripcionLarga;	
 	private BigDecimal precioUnitario;
-	private int stock;	
-	private List<ProyectoConProducto> proyectoConProductos;
+	private int stock;
 
 	public Producto() {
 	}
@@ -57,28 +56,6 @@ public class Producto implements Serializable {
 
 	public void setStock(int stock) {
 		this.stock = stock;
-	}
-
-	public List<ProyectoConProducto> getProyectoConProductos() {
-		return this.proyectoConProductos;
-	}
-
-	public void setProyectoConProductos(List<ProyectoConProducto> proyectoConProductos) {
-		this.proyectoConProductos = proyectoConProductos;
-	}
-
-	public ProyectoConProducto addProyectoConProducto(ProyectoConProducto proyectoConProducto) {
-		getProyectoConProductos().add(proyectoConProducto);
-		proyectoConProducto.setProducto(this);
-
-		return proyectoConProducto;
-	}
-
-	public ProyectoConProducto removeProyectoConProducto(ProyectoConProducto proyectoConProducto) {
-		getProyectoConProductos().remove(proyectoConProducto);
-		proyectoConProducto.setProducto(null);
-
-		return proyectoConProducto;
-	}
+	}	
 
 }

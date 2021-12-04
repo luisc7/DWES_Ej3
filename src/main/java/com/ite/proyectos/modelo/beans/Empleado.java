@@ -21,8 +21,23 @@ public class Empleado implements Serializable {
 	private BigDecimal salario;	
 	private Departamento departamento;	
 	private Perfile perfile;
+	private String password;
 
 	public Empleado() {
+	}
+
+	public Empleado(int idEmpl, String correo, Date fechaIngreso, Date fechaNacimiento, String nombre,
+			BigDecimal salario, Departamento departamento, Perfile perfile, String password) {
+		super();
+		this.idEmpl = idEmpl;
+		this.correo = correo;
+		this.fechaIngreso = fechaIngreso;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nombre = nombre;
+		this.salario = salario;
+		this.departamento = departamento;
+		this.perfile = perfile;
+		this.password = password;
 	}
 
 	public int getIdEmpl() {
@@ -87,6 +102,34 @@ public class Empleado implements Serializable {
 
 	public void setPerfile(Perfile perfile) {
 		this.perfile = perfile;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idEmpl;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Empleado))
+			return false;
+		Empleado other = (Empleado) obj;
+		if (idEmpl != other.idEmpl)
+			return false;
+		return true;
 	}
 
 }

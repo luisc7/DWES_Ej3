@@ -13,6 +13,14 @@ public class Factura implements Serializable {
 
 	public Factura() {
 	}
+	
+	public Factura(String idFactura, String descripcion, Proyecto proyecto) {
+		super();
+		this.idFactura = idFactura;
+		this.descripcion = descripcion;
+		this.proyecto = proyecto;
+	}
+
 
 	public String getIdFactura() {
 		return this.idFactura;

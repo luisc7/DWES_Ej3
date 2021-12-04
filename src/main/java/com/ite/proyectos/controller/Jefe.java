@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/jefe")
 public class Jefe {
 	
-	@GetMapping
+	@GetMapping("/proyectos")
 	public String ListarProyectos() {
 		return "listarproyectos";
 	}
 	
-	@GetMapping
+	@GetMapping("/verDetalle")
 	public String VerDetalle() {
 		return "detalle";
 	}
