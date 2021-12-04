@@ -164,4 +164,27 @@ public class Proyecto implements Serializable {
 		this.jefeProyecto = jefeProyecto;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idProyecto == null) ? 0 : idProyecto.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Proyecto))
+			return false;
+		Proyecto other = (Proyecto) obj;
+		if (idProyecto == null) {
+			if (other.idProyecto != null)
+				return false;
+		} else if (!idProyecto.equals(other.idProyecto))
+			return false;
+		return true;
+	}
+
 }

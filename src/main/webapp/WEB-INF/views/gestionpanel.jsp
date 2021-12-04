@@ -35,8 +35,8 @@
 				<td class="col1 filled-col">${eleProyecto.descripcion}</td>
 				<td class="col3 filled-col">${eleProyecto.cliente.nombre}</td>
 				<td class="col3 filled-col">${eleProyecto.estado}</td>
-				<td class="col4 filled-col">${eleProyecto.jefeProyecto}</td>
-				<td class="col5 filled-col"><a href="terminarProyecto/${eleProyecto.idProyecto}">Terminar proyecto</a></td>
+				<td class="col4 filled-col">${eleProyecto.jefeProyecto.nombre}</td>
+				<td class="col5 filled-col"><a href="gestion/terminarProyecto/${eleProyecto.idProyecto}">Terminar proyecto</a></td>
 			</tr>
 		</c:forEach>
 		

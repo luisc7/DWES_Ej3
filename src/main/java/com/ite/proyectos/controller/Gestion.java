@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ite.proyectos.modelo.beans.Empleado;
+import com.ite.proyectos.modelo.beans.Proyecto;
 import com.ite.proyectos.modelo.repository.IntClienteDao;
 import com.ite.proyectos.modelo.repository.IntEmpleadoDao;
 import com.ite.proyectos.modelo.repository.IntProyectoDao;
@@ -34,11 +36,15 @@ public class Gestion {
 	private IntEmpleadoDao iempleados;
 	
 	@GetMapping("")
-	public String inicioGestion(HttpSession sesionEmpleado) {
+	public String inicioGestion(
+			Model model,
+			HttpSession sesionEmpleado) {
 		Empleado empleadoActivo = (Empleado)sesionEmpleado.getAttribute("empleadoActivo");
-		if (empleadoActivo.getPerfile().getIdPerfil()==1)
+		if (empleadoActivo.getPerfile().getIdPerfil()==1) {
+			model.addAttribute("listaProyectos", iproyectos.listarProyectos());
+			model.addAttribute("listaClientes", iclientes.listarClientes());
 			return "gestionpanel";
-		else
+		} else
 			return "redirect:/login";
 	}
 	
@@ -57,7 +63,8 @@ public class Gestion {
 		@RequestParam("fechaInicio") String fechaInicioString,
 		@RequestParam("fechaFinPrevisto") String fechaFinPrevistoString,
 		@RequestParam("ventaPrevisto") String ventaPrevistoString,
-		@RequestParam("cliente") String cifCliente) throws ParseException {
+		@RequestParam("cliente") String cifCliente,
+		@RequestParam("jefeProyecto") int idEmpleado) throws ParseException {
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -67,22 +74,36 @@ public class Gestion {
 				format.parse(fechaFinPrevistoString), 
 				format.parse(fechaInicioString), 
 				new BigDecimal(ventaPrevistoString), 
-				iclientes.findByCif(cifCliente), 
-				null);
+				iclientes.findByCif(cifCliente),
+				iempleados.findById(idEmpleado));
 		
-		attr.addFlashAttribute("listaProyectos", iproyectos.listarProyectos());
-		attr.addFlashAttribute("listaClientes", iclientes.listarClientes());
+		//attr.addFlashAttribute("listaProyectos", iproyectos.listarProyectos());
+		//attr.addFlashAttribute("listaClientes", iclientes.listarClientes());
 	
 		return "redirect:/gestion";
 	}
 	
-	@GetMapping("/terminarProyecto")
-	public String terminarProyecto() {
-		return "redirect:/gestion";
+	@GetMapping("/terminarProyecto/{id}")
+	public String terminarProyecto(
+			Model model,
+			@PathVariable("id") int idProyecto) {
+		model.addAttribute("proyectoATerminar", iproyectos.findById(Integer.toString(idProyecto)));
+		return "terminarProyectoForm";
 	}
 	
-	@PostMapping("/terminarProyecto")
-	public String terminarProyectoPost() {
+	@PostMapping("/terminarProyecto/{id}")
+	public String terminarProyectoPost(
+			Model model,
+			@PathVariable("id") String idProyecto,
+			@RequestParam("costeReal") String costeRealString,
+			@RequestParam("fechaFinReal") String fechaFinRealString) throws ParseException {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+		System.out.println("entra en Post");
+		Proyecto proyecto = (Proyecto) model.getAttribute("proyectoATerminar");
+		//iproyectos.terminarProyecto(proyecto.getIdProyecto(), new BigDecimal(costeRealString), format.parse(fechaFinRealString));
+		iproyectos.terminarProyecto(idProyecto, new BigDecimal(costeRealString), format.parse(fechaFinRealString));
 		return "redirect:/gestion";
 	}
 	

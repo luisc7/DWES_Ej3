@@ -57,4 +57,36 @@ public class ListImplProyecto implements IntProyectoDao {
 	public List<Proyecto> listarProyectos() {
 		return listaProyectos;
 	}
+	
+	@Override
+	public Proyecto findById(String idProyecto) {
+		Proyecto aux = new Proyecto();
+		aux.setIdProyecto(idProyecto);
+		int pos = listaProyectos.indexOf(aux);
+		if (pos == -1)
+			return null;
+		else
+			return listaProyectos.get(pos);
+	}
+
+	@Override
+	public int terminarProyecto(String idProyecto, BigDecimal costeReal, Date fechaFinReal) {
+		Proyecto aux = new Proyecto();
+		aux.setIdProyecto(idProyecto);
+		int pos = listaProyectos.indexOf(aux);
+		if (pos == -1) {
+			System.out.println("Entra en cero...");
+			return 0;
+		} else {
+			aux = listaProyectos.get(pos);
+			aux.setEstado("Terminado");
+			System.out.println(aux.getEstado());
+			aux.setCosteReal(costeReal);
+			aux.setFechaFinReal(fechaFinReal);
+			listaProyectos.set(pos, aux);
+
+			System.out.println(listaProyectos.get(pos).getEstado());
+			return 1;
+		}
+	}
 }
