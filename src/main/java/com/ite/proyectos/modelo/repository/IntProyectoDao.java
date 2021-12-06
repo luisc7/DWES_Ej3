@@ -10,10 +10,12 @@ import com.ite.proyectos.modelo.beans.Proyecto;
 
 public interface IntProyectoDao {
 
-	String altaProyecto(BigDecimal costesPrevisto, String descripcion, Date fechaFinPrevisto, Date fechaInicio,
+	Proyecto altaProyecto(BigDecimal costesPrevisto, String descripcion, Date fechaFinPrevisto, Date fechaInicio,
 			BigDecimal ventaPrevisto, Cliente cliente, Empleado jefeProyecto);
 	List<Proyecto> listarProyectos();
 	Proyecto findById(String idProyecto);
 	int terminarProyecto(String idProyecto, BigDecimal costeReal, Date fechaFinReal);
+	List<Proyecto> listarProyectosJefe(Empleado jefe);
+	int cargaInicialProyectosConEmpleado(Proyecto proyecto, List<Empleado> listaEmpleados);
 
 }

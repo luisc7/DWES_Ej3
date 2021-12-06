@@ -11,14 +11,13 @@
 	<form action="login" method="post" name="formAlta">
 	<fieldset>
 		<legend>Inicio de sesión</legend>
-		<div class="grid">
-		
-		<label for="idEmpleado">Número de empleado </label>
-		<input type="number" name="idEmpleado" id="idEmpleado"/><br>
-		<label for="email">Correo electrónico </label>
-		<input type="text" name="email" id="email"/><br>
-		<label for="password">Contraseña </label>
+		<div class="grid">		
+		<input type="number" name="idEmpleado" id="idEmpleado"/>
+		<label for="idEmpleado"> Número de empleado </label><br>
+		<input type="text" name="email" id="email"/>
+		<label for="email"> Correo electrónico </label><br>
 		<input type="password" name="password" id="password"/>
+		<label for="password"> Contraseña </label>
 		
 		</div>
 		

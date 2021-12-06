@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.ite.proyectos.modelo.beans.Cliente;
-import com.ite.proyectos.modelo.beans.Empleado;
 
 
 @Repository

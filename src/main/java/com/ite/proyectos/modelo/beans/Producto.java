@@ -2,7 +2,6 @@ package com.ite.proyectos.modelo.beans;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 
 public class Producto implements Serializable {
@@ -16,6 +15,20 @@ public class Producto implements Serializable {
 	private int stock;
 
 	public Producto() {
+	}
+
+	public Producto(
+			int idProducto, 
+			String descripcionBreve, 
+			String descripcionLarga, 
+			BigDecimal precioUnitario, 
+			int stock) {
+		super();
+		this.idProducto = idProducto;
+		this.descripcionBreve = descripcionBreve;
+		this.descripcionLarga = descripcionLarga;
+		this.precioUnitario = precioUnitario;
+		this.stock = stock;
 	}
 
 	public int getIdProducto() {
@@ -56,6 +69,26 @@ public class Producto implements Serializable {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idProducto;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Producto))
+			return false;
+		Producto other = (Producto) obj;
+		if (idProducto != other.idProducto)
+			return false;
+		return true;
 	}	
 
 }

@@ -20,6 +20,7 @@ public class Proyecto implements Serializable {
 	private Date fechaInicio;
 	private BigDecimal ventaPrevisto;	
 	private List<ProyectoConEmpleado> proyectoConEmpleados;	
+	private List<ProyectoConProducto> proyectoConProductos;	
 	private Cliente cliente;	
 	private Empleado jefeProyecto;
 
@@ -148,6 +149,14 @@ public class Proyecto implements Serializable {
 		return proyectoConEmpleado;
 	}
 
+	public List<ProyectoConProducto> getProyectoConProductos() {
+		return proyectoConProductos;
+	}
+
+	public void setProyectoConProductos(List<ProyectoConProducto> proyectoConProductos) {
+		this.proyectoConProductos = proyectoConProductos;
+	}
+
 	public Cliente getCliente() {
 		return this.cliente;
 	}
@@ -185,6 +194,15 @@ public class Proyecto implements Serializable {
 		} else if (!idProyecto.equals(other.idProyecto))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Proyecto [idProyecto=" + idProyecto + ", costeReal=" + costeReal + ", costesPrevisto=" + costesPrevisto
+				+ ", descripcion=" + descripcion + ", estado=" + estado + ", fechaFinPrevisto=" + fechaFinPrevisto
+				+ ", fechaFinReal=" + fechaFinReal + ", fechaInicio=" + fechaInicio + ", ventaPrevisto=" + ventaPrevisto
+				+ ", proyectoConEmpleados=" + proyectoConEmpleados + ", proyectoConProductos=" + proyectoConProductos
+				+ ", cliente=" + cliente + ", jefeProyecto=" + jefeProyecto + "]";
 	}
 
 }

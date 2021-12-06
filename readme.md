@@ -56,12 +56,10 @@ Url’s a desarrollar obligatorias para la actividad.
 
 ## A partir de aquí todo es opcional y puedes dar rienda suelta a tu imaginación
 
-- “/asignarEmpleados”
-  - Sacar la lista de empleados en un jsp y asignar los empleados necesarios con las horas que van a dedicar a ese proyecto y la fecha prevista de incorporación y una opción que sea:
-    - “/desasignar/{id}
+- “/asignarEmpleados”: Sacar la lista de empleados en un jsp y asignar los empleados necesarios con las horas que van a dedicar a ese proyecto y la fecha prevista de incorporación y una opción que sea:
   - **“/desasignar/{id}”** : el empleado no se puede incorporar al proyecto y lo borramos de este proyecto.
-  - “asignarProductos”: mostrar por página JSP la lista de productos de la base de datos y asignar al proyecto los productos seleccionados, con la cantidad necesaria y el precio asignado(que por defecto será el precio del producto.
-  - ...
+- “asignarProductos”: mostrar por página JSP la lista de productos de la base de datos y asignar al proyecto los productos seleccionados, con la cantidad necesaria y el precio asignado(que por defecto será el precio del producto.
+- ...
 
 ### @RequestMapping(“/empleados”)
 

@@ -17,10 +17,10 @@
 	<form action="${proyectoATerminar.idProyecto }" method="post" name="formTerminarProyecto">
 	<fieldset>
 		<legend>Cumplimenta los datos para terminar el proyecto:</legend>
-		<label for="costeReal">Coste final del proyecto: </label>
-		<input type="number" name="costeReal"><br>
-		<label for="fechaFinReal">Fecha de finalización: </label>
-		<input type="date" name="fechaFinReal"><br>
+		<input type="number" name="costeReal">
+		<label for="costeReal"> Coste final del proyecto </label><br>
+		<input type="date" name="fechaFinReal">
+		<label for="fechaFinReal"> Fecha de finalización </label><br>
 	</fieldset>
 	
 	<input class="send-button" type="submit" value="Terminar el proyecto" />

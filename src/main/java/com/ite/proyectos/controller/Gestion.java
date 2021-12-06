@@ -40,12 +40,14 @@ public class Gestion {
 			Model model,
 			HttpSession sesionEmpleado) {
 		Empleado empleadoActivo = (Empleado)sesionEmpleado.getAttribute("empleadoActivo");
-		if (empleadoActivo.getPerfile().getIdPerfil()==1) {
+		int perfil = empleadoActivo.getPerfile().getIdPerfil();
+		if (perfil==1) {
 			model.addAttribute("listaProyectos", iproyectos.listarProyectos());
 			model.addAttribute("listaClientes", iclientes.listarClientes());
 			return "gestionpanel";
-		} else
-			return "redirect:/login";
+		}
+		else
+			return "redirect:/";
 	}
 	
 	@GetMapping("/altaProyecto")
@@ -68,7 +70,7 @@ public class Gestion {
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		
-		iproyectos.altaProyecto(
+		Proyecto proyectoCargado = iproyectos.altaProyecto(
 				new BigDecimal(costePrevistoString), 
 				descripcion, 
 				format.parse(fechaFinPrevistoString), 
@@ -76,10 +78,7 @@ public class Gestion {
 				new BigDecimal(ventaPrevistoString), 
 				iclientes.findByCif(cifCliente),
 				iempleados.findById(idEmpleado));
-		
-		//attr.addFlashAttribute("listaProyectos", iproyectos.listarProyectos());
-		//attr.addFlashAttribute("listaClientes", iclientes.listarClientes());
-	
+		iproyectos.cargaInicialProyectosConEmpleado(proyectoCargado, iempleados.listarEmpleados());
 		return "redirect:/gestion";
 	}
 	
@@ -99,10 +98,7 @@ public class Gestion {
 			@RequestParam("fechaFinReal") String fechaFinRealString) throws ParseException {
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-		System.out.println("entra en Post");
-		Proyecto proyecto = (Proyecto) model.getAttribute("proyectoATerminar");
-		//iproyectos.terminarProyecto(proyecto.getIdProyecto(), new BigDecimal(costeRealString), format.parse(fechaFinRealString));
+		
 		iproyectos.terminarProyecto(idProyecto, new BigDecimal(costeRealString), format.parse(fechaFinRealString));
 		return "redirect:/gestion";
 	}

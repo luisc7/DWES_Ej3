@@ -12,33 +12,34 @@
 
 	
 	<h1>Alta de nuevo proyecto</h1>
+	<a href="/gestion">Volver a Gestión de Proyectos</a>
 	<p>Hola ${empleadoActivo.nombre}</p>
 	
 	<form action="altaProyecto" method="post" name="formAltaProyecto">
 	<fieldset>
 		<legend>Cumplimenta los datos el nuevo proyecto:</legend>
-		<label for="descripcion">Descripción del proyecto: </label>
-		<input type="text" name="descripcion"><br>
-		<label for="costePrevisto">Coste previsto: </label>
-		<input type="number" name="costePrevisto"><br>
-		<label for="fechaInicio">Fecha de inicio: </label>
-		<input type="date" name="fechaInicio"><br>
-		<label for="fechaFinPrevisto">Fecha prevista de finalización: </label>
-		<input type="date" name="fechaFinPrevisto"><br>
-		<label for="ventaPrevisto">Ventas previstas para el proyecto: </label>
-		<input type="number" name="ventaPrevisto"><br>
-		<label for="cliente">Cliente: </label>
+		<input type="text" name="descripcion">
+		<label for="descripcion"> Descripción del proyecto </label><br>
+		<input type="number" name="costePrevisto">
+		<label for="costePrevisto"> Coste previsto </label><br>
+		<input type="number" name="ventaPrevisto">
+		<label for="ventaPrevisto"> Ventas previstas para el proyecto </label><br>
+		<input type="date" name="fechaInicio">
+		<label for="fechaInicio"> Fecha de inicio </label><br>
+		<input type="date" name="fechaFinPrevisto">
+		<label for="fechaFinPrevisto"> Fecha prevista de finalización </label><br>
 		<select name="cliente">
 		<c:forEach var="eleCliente" items="${listaClientes}">
 			<option value="${eleCliente.cif}">${eleCliente.nombre}</option>
 		</c:forEach>
-		</select><br>
-		<label for="jefeProyecto">Jefe de proyecto: </label>
+		</select>
+		<label for="cliente"> Cliente </label><br>
 		<select name="jefeProyecto">
 		<c:forEach var="eleJefe" items="${listaJefes}">
 			<option value="${eleJefe.idEmpl}">${eleJefe.nombre}</option>
 		</c:forEach>
 		</select>
+		<label for="jefeProyecto"> Jefe de proyecto </label>
 	</fieldset>
 	
 	<input class="send-button" type="submit" value="Dar de alta el proyecto" />

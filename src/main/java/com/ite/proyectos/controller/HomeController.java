@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ite.proyectos.modelo.beans.Empleado;
-import com.ite.proyectos.modelo.repository.IntClienteDao;
-import com.ite.proyectos.modelo.repository.IntDepartamentoDao;
+//import com.ite.proyectos.modelo.repository.IntClienteDao;
 import com.ite.proyectos.modelo.repository.IntEmpleadoDao;
-import com.ite.proyectos.modelo.repository.IntPerfileDao;
-import com.ite.proyectos.modelo.repository.IntProyectoDao;
 
 @Controller
 @RequestMapping("/")
@@ -24,30 +21,34 @@ public class HomeController {
 	
 	private final int gestion = 1;
 	private final int jefe = 2;
-	private final int operativo = 3;
-	private final int recursosHumanos = 4;
+	//private final int operativo = 3;
+	//private final int recursosHumanos = 4;
 	
 	@Autowired
 	private IntEmpleadoDao iempleados;
 	
-	@Autowired
-	private IntClienteDao iclientes;
+	//@Autowired
+	//private IntClienteDao iclientes;
 	
 	@GetMapping("/")
 	public String inicio(HttpSession sesionEmpleado) {
+		/**
+		 * Aquí dirijo al login si no hay empleado logeado
+		 */
 		Empleado empleadoActivo = (Empleado) sesionEmpleado.getAttribute("empleadoActivo");
 		if (empleadoActivo == null)
 			return "redirect:/login";		
 		else {
 			int opcion = empleadoActivo.getPerfile().getIdPerfil();
 			switch(opcion) {
-				case 1:
+				case gestion:
 					return "redirect:/gestion";
+				case jefe:
+					return "redirect:/jefe";
 				default:
 					return "redirect:/login";
 			}
 		}
-			
 	}
 	
 	@GetMapping("/login")
@@ -63,12 +64,11 @@ public class HomeController {
 			HttpSession sesionEmpleado,
 			RedirectAttributes attr,
 			Model model) {
+		/**
+		 * Comprueba el usuario y vuelve al login en caso de ser incorrecto
+		 * Si es correcto, dirige a gestion o jefe según sea el tipo de empleado
+		 */
 		Empleado empleadoActivo = iempleados.findById(idEmpleado);
-		
-		System.out.println(empleadoActivo.getCorreo().equals(email));
-		System.out.println(empleadoActivo.getPassword().equals(password));
-		System.out.println(email);
-		System.out.println(password);
 		
 		if (!empleadoActivo.getCorreo().equals(email) || !empleadoActivo.getPassword().equals(password)) {
 			model.addAttribute("mensajeLogin", "Error de login");
@@ -78,6 +78,10 @@ public class HomeController {
 			attr.addFlashAttribute("mensajeLogin", "Inicio de sesión correcto");
 			sesionEmpleado.setAttribute("empleadoActivo", empleadoActivo);
 			return "redirect:/gestion";
+		} else if (empleadoActivo.getPerfile().equals(iempleados.SacarListaPerfiles().getPerfil(jefe))) {
+			attr.addFlashAttribute("mensajeLogin", "Inicio de sesión correcto");
+			sesionEmpleado.setAttribute("empleadoActivo", empleadoActivo);
+			return "redirect:/jefe";
 		} else {
 			model.addAttribute("mensajeLogin", "Error de login");
 			return "login";

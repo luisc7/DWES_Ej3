@@ -14,6 +14,7 @@ public interface IntEmpleadoDao {
 	Empleado findById(int idEmpleado);
 	ListImplPerfile SacarListaPerfiles();
 	List<Empleado> listarJefes();
+	List<Empleado> listarEmpleados();
 	
 	
 }

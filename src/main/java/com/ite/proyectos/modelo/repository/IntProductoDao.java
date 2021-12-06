@@ -1,5 +1,7 @@
 package com.ite.proyectos.modelo.repository;
 
-public interface IntProductoDao {
+import com.ite.proyectos.modelo.beans.Producto;
 
+public interface IntProductoDao {
+	Producto findById(int idProducto);
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.ite.proyectos.modelo.beans.Cliente;
 import com.ite.proyectos.modelo.beans.Empleado;
 import com.ite.proyectos.modelo.beans.Proyecto;
+import com.ite.proyectos.modelo.beans.ProyectoConEmpleado;
 
 @Repository
 public class ListImplProyecto implements IntProyectoDao {
@@ -23,7 +24,7 @@ public class ListImplProyecto implements IntProyectoDao {
 	}
 	
 	@Override
-	public String altaProyecto(
+	public Proyecto altaProyecto(
 			BigDecimal costesPrevisto, 
 			String descripcion,
 			Date fechaFinPrevisto,
@@ -34,8 +35,8 @@ public class ListImplProyecto implements IntProyectoDao {
 		
 		Proyecto proyecto = new Proyecto(
 				indiceProyecto.toString(), 
-				costesPrevisto, 
 				null, 
+				costesPrevisto, 
 				descripcion, 
 				"activo", 
 				fechaFinPrevisto, 
@@ -48,7 +49,8 @@ public class ListImplProyecto implements IntProyectoDao {
 		
 		if (listaProyectos.add(proyecto)) {
 			indiceProyecto++;
-			return proyecto.getIdProyecto();
+			//return proyecto.getIdProyecto();
+			return proyecto;
 		} else
 			return null;
 	}
@@ -68,6 +70,17 @@ public class ListImplProyecto implements IntProyectoDao {
 		else
 			return listaProyectos.get(pos);
 	}
+	
+	@Override
+	public List<Proyecto> listarProyectosJefe(Empleado jefe) {
+		List<Proyecto> proyectosJefe = new ArrayList<Proyecto>();
+		for (Proyecto eleProyecto : listaProyectos) {
+			if (eleProyecto.getJefeProyecto().equals(jefe)) {
+				proyectosJefe.add(eleProyecto);
+			}
+		}
+		return proyectosJefe;
+	}
 
 	@Override
 	public int terminarProyecto(String idProyecto, BigDecimal costeReal, Date fechaFinReal) {
@@ -86,6 +99,26 @@ public class ListImplProyecto implements IntProyectoDao {
 			listaProyectos.set(pos, aux);
 
 			System.out.println(listaProyectos.get(pos).getEstado());
+			return 1;
+		}
+	}
+	
+	@Override
+	public int cargaInicialProyectosConEmpleado(Proyecto proyecto, List<Empleado> listaEmpleados) {
+		//Proyecto aux = new Proyecto();
+		//aux.setIdProyecto(idProyecto);
+		int pos = listaProyectos.indexOf(proyecto);
+		if (pos == -1)
+			return -1;
+		else {
+			//aux = listaProyectos.get(pos);
+			List<ProyectoConEmpleado> proyectoConEmpleados = new ArrayList<ProyectoConEmpleado>();
+			for (Empleado empleado:listaEmpleados) {
+				int orden = 0;
+				proyectoConEmpleados.add(new ProyectoConEmpleado(++orden, new Date(0), 0, empleado, proyecto));
+			}
+			proyecto.setProyectoConEmpleados(proyectoConEmpleados);
+			listaProyectos.set(pos, proyecto);
 			return 1;
 		}
 	}

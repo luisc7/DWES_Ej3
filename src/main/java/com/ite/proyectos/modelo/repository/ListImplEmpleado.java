@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ite.proyectos.modelo.beans.Departamento;
@@ -39,6 +38,7 @@ public class ListImplEmpleado implements IntEmpleadoDao {
 		addNewEmpleado("c@c.c", new Date(), format.parse("1983-03-03"), "Trifecto", new BigDecimal(31000L), departamentos.findById(3), perfilEmpleados.getPerfil(2), "tres");
 		addNewEmpleado("d@d.d", new Date(), format.parse("1974-04-04"), "Cuaternario", new BigDecimal(43000L), departamentos.findById(3), perfilEmpleados.getPerfil(3), "cuatro");
 		addNewEmpleado("e@e.e", new Date(), format.parse("1970-01-01"), "Quintiliano", new BigDecimal(52000L), departamentos.findById(3), perfilEmpleados.getPerfil(1), "cinco");
+		addNewEmpleado("f@f.f", new Date(), format.parse("1978-11-16"), "Sixtiliano", new BigDecimal(78000L), departamentos.findById(3), perfilEmpleados.getPerfil(2), "seis");
 	}
 	
 	@Override
@@ -75,6 +75,11 @@ public class ListImplEmpleado implements IntEmpleadoDao {
 	@Override
 	public ListImplPerfile SacarListaPerfiles() {
 		return perfilEmpleados;
+	}
+	
+	@Override
+	public List<Empleado> listarEmpleados() {
+		return listaEmpleados;
 	}
 
 	@Override
