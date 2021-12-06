@@ -8,14 +8,15 @@ public class ProyectoConEmpleado implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	private static int numeroOrden=0;
+	private static int ordenActual = 0;
+	private int numeroOrden;
 	private Date fechaIncorporacion;
 	private int horasAsignadas;	
 	private Empleado empleado;
 	private Proyecto proyecto;
 
 	public ProyectoConEmpleado() {
-		this.numeroOrden = ++numeroOrden;
+		this.numeroOrden = ++ordenActual;
 	}
 
 	public ProyectoConEmpleado(
@@ -25,7 +26,7 @@ public class ProyectoConEmpleado implements Serializable {
 			Empleado empleado,
 			Proyecto proyecto) {
 		super();
-		this.numeroOrden = ++numeroOrden;
+		this.numeroOrden = ++ordenActual;
 		this.fechaIncorporacion = fechaIncorporacion;
 		this.horasAsignadas = horasAsignadas;
 		this.empleado = empleado;

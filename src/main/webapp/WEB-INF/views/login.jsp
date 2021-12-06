@@ -27,5 +27,25 @@
 	
 	</form>
 	<p>${mensajeLogin}</p>
+	<table>
+		<tr>
+			<th>Tipo usuario</th>
+			<th>Número</th>
+			<th>Correo electrónico</th>
+			<th>Contraseña</th>
+		</tr>
+		<tr>
+			<td>Gestor:</td>
+			<td><b>5</b></td>
+			<td><b>e@e.e</b></td>
+			<td><b>cinco</b></td>
+		</tr>
+		<tr>
+			<td>Jefe:</td>
+			<td><b>3</b></td>
+			<td><b>c@c.c</b></td>
+			<td><b>tres</b></td>
+		</tr>
+	</table>
 </body>
 </html>

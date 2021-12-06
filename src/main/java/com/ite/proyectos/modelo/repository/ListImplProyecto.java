@@ -115,7 +115,7 @@ public class ListImplProyecto implements IntProyectoDao {
 			List<ProyectoConEmpleado> proyectoConEmpleados = new ArrayList<ProyectoConEmpleado>();
 			for (Empleado empleado:listaEmpleados) {
 				int orden = 0;
-				proyectoConEmpleados.add(new ProyectoConEmpleado(++orden, new Date(0), 0, empleado, proyecto));
+				proyectoConEmpleados.add(new ProyectoConEmpleado(++orden, null, 0, empleado, proyecto));
 			}
 			proyecto.setProyectoConEmpleados(proyectoConEmpleados);
 			listaProyectos.set(pos, proyecto);

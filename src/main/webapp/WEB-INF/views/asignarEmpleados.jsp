@@ -17,6 +17,12 @@
 	
 	<h1>Asignación de empleados al proyecto ${proyecto.descripcion}</h1>
 	<p>Hola ${empleadoActivo.nombre}</p>
+	<a href="/jefe">
+		Volver a la lista de tus proyectos
+	</a><br>
+	<a href="/jefe/verDetalle/${proyecto.idProyecto}">
+		Volver a los detalles del proyecto
+	</a>
 	<table>		 
 		 <tr>
 			<th>Nombre empleado</th>
@@ -31,7 +37,7 @@
 				<td>${eleEmpleado.horasAsignadas}</td>
 				<td>
 					<c:if test="${eleEmpleado.horasAsignadas != 0}">
-						${eleEmpleado.fechaIncorporacion}
+						<fmt:formatDate pattern = "dd-MM-yyyy" value = "${eleEmpleado.fechaIncorporacion}"/>
 					</c:if>		
 				</td>
 				<td>
@@ -39,7 +45,7 @@
 						<a href="${proyecto.idProyecto}/asignarHorasEmpleado/${eleEmpleado.empleado.idEmpl}">Asignar horas</a>
 					</c:if>
 					<c:if test="${eleEmpleado.horasAsignadas != 0}">
-						<a href="">Desasignar proyecto</a>
+						<a href="${proyecto.idProyecto}/desasignar/${eleEmpleado.empleado.idEmpl}">Desasignar proyecto</a>
 					</c:if>
 				</td>
 			</tr>

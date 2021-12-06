@@ -38,9 +38,9 @@
 			<td>${proyecto.descripcion}</td>
 			<td>${proyecto.cliente.nombre}</td>
 			<td>${proyecto.estado}</td>
-			<td>${proyecto.fechaInicio}</td>
-			<td>${proyecto.fechaFinPrevisto}</td>
-			<td>${proyecto.fechaFinReal}</td>
+			<td><fmt:formatDate pattern = "dd-MM-yyyy" value = "${proyecto.fechaInicio}"/></td>
+			<td><fmt:formatDate pattern = "dd-MM-yyyy" value = "${proyecto.fechaFinPrevisto}"/></td>
+			<td><fmt:formatDate pattern = "dd-MM-yyyy" value = "${proyecto.fechaFinReal}"/></td>
 			<td>${proyecto.ventaPrevisto}</td>
 			<td>${proyecto.costesPrevisto}</td>
 			<td>${proyecto.costeReal}</td>
@@ -48,7 +48,7 @@
 	</table>
 	
 	<a href="/jefe/asignarEmpleados/${proyecto.idProyecto}">
-		<input type="button" value="Añadir empleados al proyecto">
+		<input type="button" value="Añadir/eliminar empleados al proyecto">
 	</a>
 	<table>
 	<caption>Empleados asignados al proyecto</caption>
